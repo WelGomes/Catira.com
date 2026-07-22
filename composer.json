@@ -1,0 +1,16 @@
+{
+    "name": "welbert/catira.com",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/",
+            "Config\\": "config/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Welbert Gomes",
+            "email": "welbert.gomes12@gmail.com"
+        }
+    ],
+    "require": {}
+}
