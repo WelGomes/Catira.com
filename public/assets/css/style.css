@@ -1,0 +1,17 @@
+:root {
+    --catira-black: #020307;
+    --catira-green: #91CA1E;
+    --catira-white: #EEEDED
+}
+
+.color-catira-black {
+    background-color: var(--catira-black) !important;
+}
+
+.color-catira-green {
+    background-color: var(--catira-green) !important;
+}
+
+.color-catira-white {
+    background-color: var(--catira-white) !important;
+}
