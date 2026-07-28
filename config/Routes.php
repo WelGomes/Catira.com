@@ -11,7 +11,8 @@ class Routes
     {
         $routes = [
             "GET" => [
-                "/" => fn() => $this->callController(method: "index", class: "LoginController"),
+                "/"          => fn() => $this->callController(method: "index", class: "LoginController"),
+                "/registrar" =>  fn() => $this->callController(method: "index", class: "RegisterController"),
             ],
             "POST" => [
 

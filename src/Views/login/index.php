@@ -2,35 +2,64 @@
 
 <section class="container-fluid p-0 w-100 vh-100">
 
-    <div class="row g-0 p-0">
+    <div class="row g-0 min-vh-100">
 
-        <div class="col-md-8 col-lg-8 d-flex justify-content-center align-items-center vh-100 color-catira-black">
+        <div class="d-none d-md-flex col-md-8 col-lg-8 d-flex justify-content-center align-items-center vh-100 color-catira-black">
             <img class="img-fluid" style="max-width: 400px;" src="/images/catira.com_logo.png" alt="">
         </div>
 
-        <div class="col-12 col-md-4 col-lg-4 d-flex flex-column justify-content-center align-items-center color-catira-white">
+        <div class="col-12 col-md-4 col-lg-4 d-flex flex-column justify-content-center align-items-center color-catira-white min-vh-100">
+            <img class="img-fluid d-md-none mb-4 mt-3" style="max-width: 180px;" src="/images/catira.com_logo.png" alt="">
 
             <div>
-                <h3>Login</h3>
+                <button class="btn color-catira-green text-white" id="btnFormLogin">Acessar</button>
+                <button class="btn color-catira-white" id="btnFormRegister">Registrar</button>
             </div>
 
-            <form action="">
-                <div class="col-12 input-group flex-nowrap w-100 m-0 p-0">
-                    <span class="input-group-text" id="E-mail">@</span>
-                    <input type="text" class="form-control" placeholder="E-mail" aria-label="E-mail" aria-describedby="E-mail">
+            <form action="" id="formLogin" class="m-3 p-3 w-100">
+
+                <div class="flex-column">
+
+                    <div class="input-group has-validation col-12">
+                        <span class="input-group-text" id="spanEmail"><i class="bi bi-envelope"></i></span>
+                        <div class="form-floating is-invalid">
+                            <input type="text" class="form-control focus-ring focus-ring-success" id="email" placeholder="e-mail">
+                            <label for="email">E-mail</label>
+                        </div>
+                        <div class="invalid-feedback d-none" id="emailIncorrect">
+                            E-mail incorreto!
+                        </div>
+                    </div>
+
+                    <div class="input-group has-validation mt-3 col-12">
+                        <span class="input-group-text text-center" role="button" id="spanPassword"><i class="bi bi-eye"></i></span>
+                        <div class="form-floating is-invalid">
+                            <input type="password" class="form-control focus-ring focus-ring-success" id="password" placeholder="password" required>
+                            <label for="password">Senha</label>
+                        </div>
+                        <div class="invalid-feedback d-none" id="passwordIncorrect">
+                            Senha incorreto!
+                        </div>
+                    </div>
+
+                    <div class="mt-3 col-12 text-end">
+                        <p>Esqueceu a senha? <a href="">Clique aqui!</a></p>
+                    </div>
+
+                    <div class="mt-3">
+                        <button type="button" class="btn w-100 color-catira-green text-white" onclick="login()">Acessar</button>
+                    </div>
+
+                    
                 </div>
 
-                <div class="col-12 input-group flex-nowrap">
-                    <span class="input-group-text" id="Password">@</span>
-                    <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="Password">
-                </div>
 
-                <div>
-                    <button>
-                        Login
-                    </button>
-                </div>
             </form>
+
+            <form action="" id="formRegister" class="d-none m-3 p-3 w-100">
+                registrarr
+            </form>
+
         </div>
 
     </div>
