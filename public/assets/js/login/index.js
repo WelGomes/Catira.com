@@ -1,3 +1,4 @@
+const bodyLogin          = document.querySelector("#bodyLogin");
 const inputEmail         = document.querySelector("#email");
 const inputPassword      = document.querySelector("#password");
 const emailIncorrect     = document.querySelector("#emailIncorrect");
@@ -19,6 +20,26 @@ spanPassword?.addEventListener("click", () => {
         spanPassword.innerHTML = "<i class='bi bi-eye'></i>"
         inputPassword.type = "password";
     }
+});
+
+btnFormRegister?.addEventListener("click", () => {
+    //Form Login
+    bodyLogin.classList.remove("color-catira-white");
+    bodyLogin.classList.add("color-catira-green");
+    formLogin.classList.add("d-none");
+
+    //Form Register
+    formRegister.classList.remove("d-none");
+});
+
+btnFormLogin?.addEventListener("click", () => {
+    //Form Login
+    bodyLogin.classList.remove("color-catira-green");
+    bodyLogin.classList.add("color-catira-white");
+    formLogin.classList.remove("d-none");
+
+    //Form Register
+    formRegister.classList.add("d-none");
 });
 
 function login()
