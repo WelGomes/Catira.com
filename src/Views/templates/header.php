@@ -7,6 +7,7 @@
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap-icons.min.css" rel="stylesheet">
     <link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/images/catira.com_logo.png" type="image/x-icon">
 
     <title>Catira.com</title>
 
