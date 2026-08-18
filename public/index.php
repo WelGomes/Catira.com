@@ -12,9 +12,7 @@ try {
     $routes->callRoutes(request: $request, uri: $uri);
 
 } catch (Exception $ex) {
-
-    var_dump($ex->getMessage());
-
+    echo "Error: {$ex->getMessage()}";
 }
 
 ?>

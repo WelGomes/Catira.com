@@ -1,4 +1,6 @@
 // ================================================================================= LOGIN =================================================================================
+// Mensagem de alerta formulário de Login
+const alertMessageLogin = document.querySelector("#alertMessageLogin");
 
 // Input E-mail
 const spanEmail = document.querySelector("#spanEmail");
@@ -28,9 +30,17 @@ spanPassword?.addEventListener("click", () => {
 
 btnFormLogin?.addEventListener("click", () => {
     //Form Login
-    bodyLogin.classList.remove("color-catira-green");
-    bodyLogin.classList.add("color-catira-white");
     formLogin.classList.remove("d-none");
+
+    // Botão Registrar
+    btnFormLogin.classList.remove("color-catira-green");
+    btnFormLogin.classList.add("color-catira-white");
+    btnFormLogin.classList.remove("text-white");
+    
+    // Botão Login
+    btnFormRegister.classList.remove("color-catira-white");
+    btnFormRegister.classList.add("color-catira-green");
+    btnFormRegister.classList.add("text-white");
 
     //Form Register
     formRegister.classList.add("d-none");
@@ -71,7 +81,7 @@ function login() {
 
 // ================================================================================= REGISTER =================================================================================
 
-// Formulário de Registro
+// Mensagem de alerta formulário de Registro
 const alertMessageRegister = document.querySelector("#alertMessageRegister");
 
 // Input Nome
@@ -110,9 +120,17 @@ const btnFormRegister = document.querySelector("#btnFormRegister");
 
 btnFormRegister?.addEventListener("click", () => {
     //Form Login
-    bodyLogin.classList.remove("color-catira-white");
-    bodyLogin.classList.add("color-catira-green");
     formLogin.classList.add("d-none");
+
+    // Botão Registrar
+    btnFormRegister.classList.remove("color-catira-green");
+    btnFormRegister.classList.add("color-catira-white");
+    btnFormRegister.classList.remove("text-white");
+    
+    // Botão Login
+    btnFormLogin.classList.remove("color-catira-white");
+    btnFormLogin.classList.add("color-catira-green");
+    btnFormLogin.classList.add("text-white");
 
     //Form Register
     formRegister.classList.remove("d-none");
@@ -137,6 +155,7 @@ async function register() {
     try {
 
         if (!verifyRegister()) {
+            console.log("aq tá errado");
             return;
         }
 
@@ -160,7 +179,35 @@ async function register() {
             }
         );
 
-        response
+        if(response.status == 200) {
+            inputFirstName.value = ""
+            inputLastName.value = ""
+            inputcpfCnpjRegister.value = ""
+            inputEmailRegister.value = ""
+            inputBirthData.value = ""
+            inputPasswordRegister.value = ""
+
+            formRegister.classList.add("d-none");
+            formLogin.classList.remove("d-none");
+            
+            btnFormRegister.classList.remove("text-dark");
+            btnFormRegister.classList.remove("color-catira-white");
+            btnFormRegister.classList.add("text-white");
+            btnFormRegister.classList.add("color-catira-green");
+            
+            btnFormLogin.classList.remove("text-white");
+            btnFormLogin.classList.remove("color-catira-green");
+            btnFormLogin.classList.add("text-dark");
+            btnFormLogin.classList.add("color-catira-white");
+            
+
+            alertMessageLogin.classList.remove("d-none");
+            alertMessageLogin.classList.add("alert-success");
+            alertMessageLogin.innerHTML = response.message + "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>";
+            setTimeout(() => {
+                alertMessageLogin.classList.add("d-none");
+            }, 5000);
+        }
 
     } catch (error) {
 
@@ -175,14 +222,14 @@ async function register() {
 
 function verifyRegister() {
 
-    let countErrors = null;
+    let errorsExists = true;
 
     if (inputFirstName.value == null || inputFirstName.value == "") {
         spanFirstName.classList.add("text-danger");
         spanFirstName.classList.add("border-danger");
         inputFirstName.classList.add("border-danger");
         firstNameIncorrect.classList.remove("d-none");
-        countErrors = false;
+        errorsExists = false;
     }
 
     if (inputLastName.value == null || inputLastName.value == "") {
@@ -190,7 +237,7 @@ function verifyRegister() {
         spanLastName.classList.add("border-danger");
         inputLastName.classList.add("border-danger");
         lastNameIncorrect.classList.remove("d-none");
-        countErrors = false;
+        errorsExists = false;
     }
 
     if (inputcpfCnpjRegister.value == null || inputcpfCnpjRegister.value == "") {
@@ -198,7 +245,7 @@ function verifyRegister() {
         spanCpfCnpj.classList.add("border-danger");
         inputcpfCnpjRegister.classList.add("border-danger");
         cpfCnpjIncorrect.classList.remove("d-none");
-        countErrors = false;
+        errorsExists = false;
     }
 
     if (inputEmailRegister.value == null || inputEmailRegister.value == "") {
@@ -206,7 +253,7 @@ function verifyRegister() {
         spanEmailRegister.classList.add("border-danger");
         inputEmailRegister.classList.add("border-danger");
         emailRegisterIncorrect.classList.remove("d-none");
-        countErrors = false;
+        errorsExists = false;
     }
 
     if (inputBirthData.value == null || inputBirthData.value == "") {
@@ -214,7 +261,7 @@ function verifyRegister() {
         spanBirthData.classList.add("border-danger");
         inputBirthData.classList.add("border-danger");
         birthDataIncorrect.classList.remove("d-none");
-        countErrors = false;
+        errorsExists = false;
     }
 
     if (inputPasswordRegister.value == null || inputPasswordRegister.value == "") {
@@ -222,7 +269,7 @@ function verifyRegister() {
         spanPasswordRegister.classList.add("border-danger");
         inputPasswordRegister.classList.add("border-danger");
         passwordRegisterIncorrect.classList.remove("d-none");
-        countErrors = false;
+        errorsExists = false;
     }
 
     setTimeout(() => {
@@ -262,7 +309,8 @@ function verifyRegister() {
         inputPasswordRegister.classList.remove("border-danger");
         passwordRegisterIncorrect.classList.add("d-none");
     }, 5000)
-
+    
+    return errorsExists;
 }
 
 
@@ -282,5 +330,5 @@ async function call(url, body) {
         throw new Error(result.message);
     }
 
-    return response;
+    return result;
 }

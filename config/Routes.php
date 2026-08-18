@@ -36,7 +36,7 @@ class Routes
 
         $newClass = "Src\\Controller\\{$class}";
 
-        $class = new $newClass();
+        $class = new $newClass(pdo: ConnectDB::connectPDO());
 
         if (!method_exists($class, $method)) {
             throw new Exception("Metódo inexistente");

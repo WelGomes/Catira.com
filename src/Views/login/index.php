@@ -18,6 +18,10 @@
 
             <form action="/login" method="POST" id="formLogin" class="m-3 p-3 w-100">
 
+                <div class="d-none alert alert-dismissible fade show" role="alert" id="alertMessageLogin">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
                 <div class="flex-column">
 
                     <div class="input-group has-validation col-12">
@@ -131,7 +135,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <button type="button" class="btn w-100 color-catira-white text-dark" onclick="register()">Registrar</button>
+                    <button type="button" class="btn w-100 color-catira-green text-white" onclick="register()">Registrar</button>
                 </div>
 
             </form>

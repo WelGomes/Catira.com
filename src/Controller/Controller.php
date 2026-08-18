@@ -4,15 +4,15 @@ namespace Src\Controller;
 
 class Controller
 {
-    private string $path;
+    private string $bodyJson;
 
     public function __construct() {
-        $this->path = file_get_contents("php://input");
+        $this->bodyJson = file_get_contents("php://input");
     }
 
-    protected function getPath(): string
+    protected function getBodyJson(): string
     {
-        return $this->path;
+        return $this->bodyJson;
     }
 }
 
