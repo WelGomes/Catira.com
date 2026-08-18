@@ -154,8 +154,7 @@ async function register() {
 
     try {
 
-        if (!verifyRegister()) {
-            console.log("aq tá errado");
+        if (verifyRegister()) {
             return;
         }
 
@@ -222,14 +221,14 @@ async function register() {
 
 function verifyRegister() {
 
-    let errorsExists = true;
+    let errorsExists = false;
 
     if (inputFirstName.value == null || inputFirstName.value == "") {
         spanFirstName.classList.add("text-danger");
         spanFirstName.classList.add("border-danger");
         inputFirstName.classList.add("border-danger");
         firstNameIncorrect.classList.remove("d-none");
-        errorsExists = false;
+        errorsExists = true;
     }
 
     if (inputLastName.value == null || inputLastName.value == "") {
@@ -237,7 +236,7 @@ function verifyRegister() {
         spanLastName.classList.add("border-danger");
         inputLastName.classList.add("border-danger");
         lastNameIncorrect.classList.remove("d-none");
-        errorsExists = false;
+        errorsExists = true;
     }
 
     if (inputcpfCnpjRegister.value == null || inputcpfCnpjRegister.value == "") {
@@ -245,7 +244,7 @@ function verifyRegister() {
         spanCpfCnpj.classList.add("border-danger");
         inputcpfCnpjRegister.classList.add("border-danger");
         cpfCnpjIncorrect.classList.remove("d-none");
-        errorsExists = false;
+        errorsExists = true;
     }
 
     if (inputEmailRegister.value == null || inputEmailRegister.value == "") {
@@ -253,15 +252,15 @@ function verifyRegister() {
         spanEmailRegister.classList.add("border-danger");
         inputEmailRegister.classList.add("border-danger");
         emailRegisterIncorrect.classList.remove("d-none");
-        errorsExists = false;
+        errorsExists = true;
     }
 
-    if (inputBirthData.value == null || inputBirthData.value == "") {
+    if (inputBirthData.value == null || inputBirthData.value == "" || verifyAge(inputBirthData.value)) {
         spanBirthData.classList.add("text-danger");
         spanBirthData.classList.add("border-danger");
         inputBirthData.classList.add("border-danger");
         birthDataIncorrect.classList.remove("d-none");
-        errorsExists = false;
+        errorsExists = true;
     }
 
     if (inputPasswordRegister.value == null || inputPasswordRegister.value == "") {
@@ -269,7 +268,7 @@ function verifyRegister() {
         spanPasswordRegister.classList.add("border-danger");
         inputPasswordRegister.classList.add("border-danger");
         passwordRegisterIncorrect.classList.remove("d-none");
-        errorsExists = false;
+        errorsExists = true;
     }
 
     setTimeout(() => {
@@ -313,6 +312,21 @@ function verifyRegister() {
     return errorsExists;
 }
 
+function verifyAge(date)
+{
+    const now = new Date();
+    const dateBirth = new Date(date);
+
+    let age = now.getFullYear() - dateBirth.getFullYear();
+    const month = now.getMonth() - dateBirth.getMonth();
+    const day = now.getDate() - dateBirth.getDate();
+    
+    if(month < 0 || (month > 0 && day > 0)) {
+        age--;
+    }
+
+    return age < 18;
+}
 
 // ================================================================================= CHAMADA DE API =================================================================================
 

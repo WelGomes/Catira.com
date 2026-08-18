@@ -117,7 +117,7 @@
                             <label for="birthData">Data de Nascimento</label>
                         </div>
                         <div class="invalid-feedback d-none" id="birthDataIncorrect">
-                            Data incorreta!
+                            Usuário tem que ser maior de 18 anos!
                         </div>
                     </div>
 

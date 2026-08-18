@@ -40,10 +40,33 @@ class UserRepository implements Repository
         $stmt->bindValue(":cpf_cnpj", $user->getCpfCnpj(), PDO::PARAM_STR);
         $stmt->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
         $stmt->bindValue(":date_of_birth", $user->getDateOfBirth(), PDO::PARAM_STR);
-        $stmt->bindValue(":password", $user->getPassword(), PDO::PARAM_STR);
+        $stmt->bindValue(":password", password_hash($user->getPassword(), PASSWORD_ARGON2ID));
         $stmt->bindValue(":status", $user->getStatus(), PDO::PARAM_BOOL);
 
         return $stmt->execute();
+    }
+
+    public function show(User $user): array|false
+    {
+        $stmt = $this->pdo->prepare(
+            "SELECT 
+                id,
+                name,
+                last_name,
+                cpf_cnpj,
+                email,
+                date_of_birth,
+                status
+            FROM users
+            WHERE cpf_cnpj = :cpf_cnpj
+            AND email = :email"
+        );
+
+        $stmt->bindValue(":cpf_cnpj", $user->getCpfCnpj(), PDO::PARAM_STR);
+        $stmt->bindValue(":email", $user->getEmail(), PDO::PARAM_STR);
+        $stmt->execute();
+        
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 }

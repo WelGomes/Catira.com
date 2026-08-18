@@ -36,6 +36,12 @@ class UserService
             status:    true
         );
 
+        $userExist = $this->userRepository->show(user: $user);
+
+        if($userExist) {
+            throw new Exception("Usuário já cadastrado!");
+        }
+
         $returnCreateUser = $this->userRepository->create(user: $user);
 
         if(!$returnCreateUser) {
